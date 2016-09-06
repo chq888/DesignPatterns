@@ -204,6 +204,11 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Pattern\GangOfFour\Creational\AbstractFactory.cs" />
+    <Compile Include="Pattern\GangOfFour\Creational\Builder.cs" />
+    <Compile Include="Pattern\GangOfFour\Creational\Factory.cs" />
+    <Compile Include="Pattern\GangOfFour\Creational\Prototype.cs" />
+    <Compile Include="Pattern\GangOfFour\Creational\Singleton.cs" />
     <Compile Include="Pattern\GangOfFour\Structural\Adapter.cs" />
     <Compile Include="Pattern\SOLID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -272,7 +277,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Pattern\GangOfFour\Behavioral\" />
-    <Folder Include="Pattern\GangOfFour\Creational\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

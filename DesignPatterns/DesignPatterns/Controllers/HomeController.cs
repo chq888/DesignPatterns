@@ -1,7 +1,10 @@
 ﻿using DesignPatterns.Pattern;
+using DesignPatterns.Pattern.GangOfFour.Creational;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Remoting;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,7 +33,6 @@ namespace DesignPatterns.Controllers
 
 
         #region SOLID
-
         public ActionResult SRP(string criteria, string searchBy)
         {
             switch(searchBy)
@@ -158,5 +160,76 @@ namespace DesignPatterns.Controllers
         }
         #endregion
 
+
+        #region GangOfFour
+
+        #region Creational
+
+        #region Singleton
+        public ActionResult Singleton()
+        {
+            Singleton1.Instance.Test();
+            Singleton2.Instance.Test();
+            return View();
+        }
+
+        public ActionResult Factory()
+        {
+            FreeChartProvider chartProvider = new FreeChartProvider();
+            IChart chard = chartProvider.GetChart();
+            PaidChartProvider paidChart = new PaidChartProvider();
+            chard = chartProvider.GetChart();
+            return View();
+        }
+
+        public ActionResult Prototype()
+        {
+            IUploadedFile u = new UploadedFile();
+            u.Clone();
+            u.DeepCopy();
+            return View();
+        }
+
+        public ActionResult AbstractFactory(string factoryType)
+        {
+            IDAOFactory factory = null;
+
+            if (factoryType == "mssql")
+            {
+                factory = new MsSqlFactory();
+            }
+            else
+            {
+                factory = new MySqlFactory();
+            }
+
+            factoryType = "DesignPatterns.Pattern.GangOfFour.Creational.MsSqlFactory";
+            ObjectHandle oh = Activator.CreateInstance(Assembly.GetExecutingAssembly().FullName, factoryType);
+            factory = (IDAOFactory)oh.Unwrap();
+            DAOHelper o = new DAOHelper(factory);
+            o.Save();
+            return View();
+        }
+
+        public ActionResult Builder()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #endregion
+
+
+        #region Structural
+
+        #endregion
+
+
+        #region Behavioral
+
+        #endregion
+
+        #endregion
     }
 }
