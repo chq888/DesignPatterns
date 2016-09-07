@@ -210,6 +210,12 @@
     <Compile Include="Pattern\GangOfFour\Creational\Prototype.cs" />
     <Compile Include="Pattern\GangOfFour\Creational\Singleton.cs" />
     <Compile Include="Pattern\GangOfFour\Structural\Adapter.cs" />
+    <Compile Include="Pattern\GangOfFour\Structural\Bridge.cs" />
+    <Compile Include="Pattern\GangOfFour\Structural\Composite.cs" />
+    <Compile Include="Pattern\GangOfFour\Structural\Decorator.cs" />
+    <Compile Include="Pattern\GangOfFour\Structural\Facade.cs" />
+    <Compile Include="Pattern\GangOfFour\Structural\Flyweight.cs" />
+    <Compile Include="Pattern\GangOfFour\Structural\Proxy.cs" />
     <Compile Include="Pattern\SOLID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

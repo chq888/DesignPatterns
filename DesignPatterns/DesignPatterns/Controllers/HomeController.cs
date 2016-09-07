@@ -1,5 +1,6 @@
 ﻿using DesignPatterns.Pattern;
 using DesignPatterns.Pattern.GangOfFour.Creational;
+using DesignPatterns.Pattern.GangOfFour.Structural;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -165,7 +166,6 @@ namespace DesignPatterns.Controllers
 
         #region Creational
 
-        #region Singleton
         public ActionResult Singleton()
         {
             Singleton1.Instance.Test();
@@ -176,7 +176,7 @@ namespace DesignPatterns.Controllers
         public ActionResult Factory()
         {
             FreeChartProvider chartProvider = new FreeChartProvider();
-            IChart chard = chartProvider.GetChart();
+            Pattern.GangOfFour.Creational.IChart chard = chartProvider.GetChart();
             PaidChartProvider paidChart = new PaidChartProvider();
             chard = chartProvider.GetChart();
             return View();
@@ -230,12 +230,85 @@ namespace DesignPatterns.Controllers
             return View();
         }
 
-        #endregion
 
         #endregion
 
 
         #region Structural
+
+        public ActionResult Adapter()
+        {
+            Pattern.GangOfFour.Structural.IChart chart = new MyChart();
+            chart.GenerateChart();
+
+            chart = new MyChartAdapter();
+            chart.GenerateChart();
+
+            chart = new MyChartAdapter2();
+            chart.GenerateChart();
+
+            return View();
+        }
+
+        public ActionResult Bridge()
+        {
+            ILogger textLog = new TextLogger();
+            IDataImporter importer = new BasicDataImporter();
+            importer.Logger = textLog;
+            importer.Import();
+
+            textLog = new XmlLogger();
+            importer = new AdvanceDataImporter();
+            importer.Logger = textLog;
+            importer.Import();
+
+            return View();
+        }
+
+        public ActionResult Composite()
+        {
+            IList<Menu> menuList = new List<Menu>();
+
+            Menu m = new Menu();
+            m.Children = new List<IMenuComponent>();
+            MenuItem mi = new MenuItem();
+            m.Children.Add(mi);
+
+            menuList.Add(m);
+            return View();
+        }
+
+        public ActionResult Decorator()
+        {
+            IPhoto p = new Photo();
+            var b = p.GetPhoto();
+            WatermarkDecorator w = new WatermarkDecorator(p);
+            b = w.GetPhoto();
+            
+            return View();
+        }
+
+        public ActionResult Facade()
+        {
+            PriceComparer c = new PriceComparer();
+            IList<Book> list = c.Compare(1);
+            return View();
+        }
+
+        public ActionResult Flyweight(string host)
+        {
+            WebsiteStatsFactory f = new WebsiteStatsFactory();
+            IWebsiteStats s = f[host];
+            return View();
+        }
+
+        public ActionResult Proxy()
+        {
+            ServiceProxy p = new ServiceProxy();
+            Customer c = p.Get("1");
+            return View();
+        }
+
 
         #endregion
 
