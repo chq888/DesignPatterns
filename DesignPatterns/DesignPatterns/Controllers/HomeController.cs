@@ -211,8 +211,22 @@ namespace DesignPatterns.Controllers
             return View();
         }
 
-        public ActionResult Builder()
+        public ActionResult Builder(string userType)
         {
+            IComputerBuilder computerBuilder = null;
+            switch(userType)
+            {
+                case "Home":
+                    computerBuilder = new HomeComputerBuilder();
+                    break;
+                case "Office":
+                    computerBuilder = new OfficeComputerBuilder();
+                    break;
+            }
+
+            ComputerAssembler a = new ComputerAssembler(computerBuilder);
+            Computer c = a.AssembleComputer();
+
             return View();
         }
 
