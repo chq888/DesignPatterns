@@ -60,4 +60,27 @@ namespace DesignPatterns.Pattern.GangOfFour.Creational
         }
     }
 
+    public class Singleton3
+    {
+        private static readonly Singleton3 _Instance = new Singleton3();
+        private Singleton3()
+        {
+
+        }
+
+        public static Singleton3 Instance
+        {
+            get
+            {
+                return _Instance;
+            }
+        }
+
+        public void Test()
+        {
+
+        }
+    }
+
+
 }
