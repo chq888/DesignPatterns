@@ -29,3 +29,39 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+@section Scripts {
+  <script>
+
+    $(document).ready(function () {
+
+      var settings2 = (function () {
+        var instance;
+        function createInstance() {
+          var s = new Object();
+          s.them = "c";
+          return s;
+        }
+
+        return {
+          getInstance: function () {
+            if (!instance) {
+              instance = createInstance();
+            }
+
+            return instance;
+          }
+        };
+
+      })();
+
+
+
+      var em2 = settings2.getInstance();
+      var em3 = settings2.getInstance();
+      alert(em3 === em2);
+
+    });
+
+  </script>
+}
